@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstdlib>
 using namespace std;
 
 struct  TNode {
@@ -12,8 +11,8 @@ struct TLinkedList {
   int count;
 };
 
-typedef Node struct TNode;
-typedef LinkedList struct TLinkedList;
+typedef struct TNode Node;
+typedef struct TLinkedList LinkedList;
 
 LinkedList* create() {
   LinkedList *list = new LinkedList;
