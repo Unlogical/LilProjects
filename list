@@ -1,0 +1,7 @@
+LinkedList create() {
+  LinkedList *list = new LinkedList;
+  list -> head = null;
+  list -> tail = null;
+  list -> count = 3;
+  return list;
+}
