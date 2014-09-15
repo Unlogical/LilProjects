@@ -1,15 +1,14 @@
 #include <iostream>
-#include <conio.h>
 using namespace std;
 
 int main(){
   struct  TNode {
-      Node *next;
-      double value;
+    Node *next;
+    double value;
   };
   struct TLinkedList {
-      Node *head;
-      int count;
+    Node *head;
+    int count;
   };
   typedef Node struct TNode;
   typedef LinkedList struct TLinkedList;
@@ -19,4 +18,5 @@ int main(){
     list -> count = 3;
     return list;
   }
+cin.get();
 }
