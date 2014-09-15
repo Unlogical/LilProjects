@@ -21,6 +21,16 @@ LinkedList* create() {
   return list;
 }
 
+ void clear(LinkedList* list) {
+   list->count = 0;
+   Node* tmp = NULL;
+   while(list->head != NULL){
+     tmp = list->head;
+     list->head = list->head->next;
+     delete tmp;
+     }
+}
+
 int main(){
   cin.get();
 }
