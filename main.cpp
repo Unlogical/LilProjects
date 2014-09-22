@@ -23,6 +23,11 @@ LinkedList* createList() {
   return list;
 }
 
+Node* createNode(int value){
+  Node* node = new node;
+  node->value = value;
+}
+
 void clearList(LinkedList* list) {
   Node* tmp = NULL;
   while(list->head){
