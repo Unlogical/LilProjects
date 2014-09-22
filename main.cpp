@@ -47,7 +47,7 @@ void deleteList(LinkedList* list){
 }
 
 void addFirstNode(LinkedList* list, int value){
-  createNode(value,list->head);
+  Node* node = createNode(value,list->head);
   if(!list->head)
     list->tail = node;
   list->head = node;
@@ -55,7 +55,7 @@ void addFirstNode(LinkedList* list, int value){
 }
 
 void addLastNode(LinkedList* list, int value){
-  createNode(value,NULL);
+  Node* node = createNode(value,NULL);
   if(!list->head)
     list->head = node;
   else
