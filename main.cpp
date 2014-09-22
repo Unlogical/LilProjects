@@ -15,17 +15,19 @@ struct TLinkedList {
   int count;
 };
 
+Node* createNode(int value, Node* next){
+  Node* node = new Node;
+  node->value = value;
+  node->next = next;
+  return node;
+}
+
 LinkedList* createList() {
   LinkedList* list = new LinkedList;
   list->head = NULL;
   list->tail = NULL;
   list->count = 0;
   return list;
-}
-
-Node* createNode(int value){
-  Node* node = new node;
-  node->value = value;
 }
 
 void clearList(LinkedList* list) {
@@ -45,9 +47,7 @@ void deleteList(LinkedList* list){
 }
 
 void addFirstNode(LinkedList* list, int value){
-  Node* node = new Node;
-  node->value = value;
-  node->next = list->head;
+  createNode(value,list->head);
   if(!list->head)
     list->tail = node;
   list->head = node;
@@ -55,9 +55,7 @@ void addFirstNode(LinkedList* list, int value){
 }
 
 void addLastNode(LinkedList* list, int value){
-  Node* node = new Node;
-  node->value = value;
-  node->next = NULL;
+  createNode(value,NULL);
   if(!list->head)
     list->head = node;
   else
