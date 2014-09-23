@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 typedef struct TNode Node;
@@ -123,36 +124,40 @@ void reverseList(LinkedList* list){
 
 void printList(LinkedList* list){
   Node* node = list->head;
+  cout<<"[ ";
   while(node){
     cout<<node->value<<' ';
     node = node->next;
   }
-  cout << endl;
+  cout<<"]"<<endl;
 }
 
 int main(){
   LinkedList* list = createList();
-  addLastNode(list, 1);
-  addLastNode(list, 14);
-  addLastNode(list, 78);
-  addLastNode(list, 256);
-  addLastNode(list, 78);
-  addLastNode(list, 15);
-  addFirstNode(list, 8);
+  int value = 0,
+          i = 0;
+  ifstream file("input.txt");
+  while (file >> value){
+    if(i % 2 == 0)
+      addFirstNode(list, value);
+    else 
+      addLastNode(list, value);
+    i++;
+  }
+  file.close();
+  cout<<"List from file:"<<endl;
   printList(list);
-
   reverseList(list);
+  cout<<"Reversed list:"<<endl;
   printList(list);
 
-  deleteAllEntries(list, 78);
+  deleteAllEntries(list, 8);
+  cout<<"List without 8:"<<endl;
   printList(list);
 
   clearList(list);
+  cout<<"Empty list:"<<endl;
   printList(list);
-
-  addLastNode(list, 9);
-  printList(list);
-
   deleteList(list);
   cin.get();
 }
