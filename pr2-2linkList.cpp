@@ -115,15 +115,16 @@ void deleteFirstEntry(LinkedList* list, int value){
 }
 
 int reverseList(LinkedList* list){
-  if (!list) return -1;
-  Node* tmp = list->head;
-  list->tail = tmp;
-  while (list->head->next){
-    tmp = list->head->next;
+  if (!list || !list->head) return -1;
+  Node* initialTail = list->tail;
+  list->tail = list->head;
+  while (list->head){
+    Node* tmp = list->head->next;
     list->head->next = list->head->prev;
     list->head->prev = tmp;
     list->head = tmp;
   }
+  list->head = initialTail;
 }
 
 int printList(LinkedList* list){
@@ -161,7 +162,7 @@ int main(){
   reverseList(list);
   cout<<"Reversed back list:"<<endl;
   printList(list);
-
+/*
   deleteFirstEntry(list, 8);
   cout<<"List without first 8:"<<endl;
   printList(list);
@@ -177,7 +178,10 @@ int main(){
   clearList(list);
   cout<<"Empty list:"<<endl;
   printList(list);
+   */ 
+  
   deleteList(list);
   cin.get();
+
 }
 
