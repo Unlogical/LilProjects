@@ -89,20 +89,26 @@ Node* seekAndDestroyEntry(Node* node, int value){
     }
     node = node->next;
   }
-  return NULL;
+  return node;
 }
 
-void deleteAllEntries(LinkedList* list, int value){
+int deleteAllEntries(LinkedList* list, int value){
+  if(!list) 
+    return -1;
   if(!list->head)
-    return;
+    return 0;
   while(list->head->value == value){
     Node* tmp = list->head;
     list->head = list->head->next;
+    if (list->head)
+      list->head->prev = NULL;
     delete tmp;
   }
   Node* node = list->head;
-  while(node)
+  while(node->next)
     node = seekAndDestroyEntry(node, value);
+  list->tail = node;
+  return 0;
 }
 
 int deleteFirstEntry(LinkedList* list, int value){
@@ -116,13 +122,19 @@ int deleteFirstEntry(LinkedList* list, int value){
     if (list->head)
       list->head->prev = NULL;
     delete tmp;
+    return 0;
   }
-  seekAndDestroyEntry(list->head, value);
+  Node *node = seekAndDestroyEntry(list->head, value);
+  if(!node->next)
+    list->tail = node;
   return 0;
 }
 
 int reverseList(LinkedList* list){
-  if (!list || !list->head) return -1;
+  if (!list) 
+    return -1;
+  if(!list->head)
+    return 0;
   Node* initialTail = list->tail;
   list->tail = list->head;
   while (list->head){
@@ -169,11 +181,11 @@ int main(){
   reverseList(list);
   cout<<"Reversed back list:"<<endl;
   printList(list);
-/*
+
   deleteFirstEntry(list, 8);
   cout<<"List without first 8:"<<endl;
   printList(list);
- 
+
   deleteAllEntries(list, 8);
   cout<<"List without 8:"<<endl;
   printList(list);
@@ -185,10 +197,8 @@ int main(){
   clearList(list);
   cout<<"Empty list:"<<endl;
   printList(list);
-   */ 
   
   deleteList(list);
   cin.get();
-
 }
 
