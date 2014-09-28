@@ -71,7 +71,7 @@ Node* seekAndDestroyEntry(Node* node, int value){
       Node* tmp = node->next;
       node->next = node->next->next;
       delete tmp;
-      return node->next;
+      return node;
     }
     node = node->next;
   }
