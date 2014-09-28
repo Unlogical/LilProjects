@@ -82,6 +82,8 @@ Node* seekAndDestroyEntry(Node* node, int value){
     if(node->next->value == value){
       Node* tmp = node->next;
       node->next = node->next->next;
+      if (node->next) 
+        node->next->prev = tmp->prev;
       delete tmp;
       return node;
     }
@@ -103,15 +105,20 @@ void deleteAllEntries(LinkedList* list, int value){
     node = seekAndDestroyEntry(node, value);
 }
 
-void deleteFirstEntry(LinkedList* list, int value){
+int deleteFirstEntry(LinkedList* list, int value){
+  if (!list) 
+    return -1;
   if(!list->head)
-    return;
+    return 0;
   if(list->head->value == value){
     Node* tmp = list->head;
     list->head = list->head->next;
+    if (list->head)
+      list->head->prev = NULL;
     delete tmp;
   }
   seekAndDestroyEntry(list->head, value);
+  return 0;
 }
 
 int reverseList(LinkedList* list){
@@ -162,11 +169,11 @@ int main(){
   reverseList(list);
   cout<<"Reversed back list:"<<endl;
   printList(list);
-/*
+
   deleteFirstEntry(list, 8);
   cout<<"List without first 8:"<<endl;
   printList(list);
- 
+/* 
   deleteAllEntries(list, 8);
   cout<<"List without 8:"<<endl;
   printList(list);
